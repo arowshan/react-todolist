@@ -1,0 +1,41 @@
+.todos {
+    margin-top: 50px;
+}
+
+.create-button {
+    margin-left: 5px;
+}
+
+.todo-desc {
+    display: inline-block;
+    width: 200px !important;
+    margin-right: 10px
+}
+
+.create-button {
+    display: inline-block;
+    width: 100px;
+    margin-left: 5px;
+    background-color: greenyellow;
+}
+
+.edit-button {
+    display: inline-block;
+    width: 100px;
+    margin-left: 5px;
+    background-color: palegoldenrod;
+}
+
+.confirm-button {
+    display: inline-block;
+    width: 100px;
+    margin-left: 5px;
+    background-color: lightgreen;
+}
+
+.delete-button {
+    display: inline-block;
+    margin-left: 5px;
+    background-color: crimson;
+    color: white;
+}
