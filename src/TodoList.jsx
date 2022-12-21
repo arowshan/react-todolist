@@ -100,8 +100,8 @@ export default class TodoList extends Component {
   };
 
   render() {
-    const editModeButton = (index, todo) => {
-      if (this.state.editingTodoIndex === index) {
+    const editModeButton = (id, todo) => {
+      if (this.state.editingTodoIndex === id) {
         return (
           <button onClick={() => this.updateTodo()} className="confirm-button">
             Confirm
@@ -110,7 +110,7 @@ export default class TodoList extends Component {
       } else {
         return (
           <button
-            onClick={() => this.handleEditButton(index, todo)}
+            onClick={() => this.handleEditButton(id, todo)}
             className="edit-button"
           >
             edit
@@ -119,8 +119,8 @@ export default class TodoList extends Component {
       }
     };
 
-    const editModeInput = (index, todo) => {
-      if (this.state.editingTodoIndex === index) {
+    const editModeInput = (index, todo, id) => {
+      if (this.state.editingTodoIndex === id) {
         return (
           <span className="todo-desc">
             <input
@@ -138,14 +138,14 @@ export default class TodoList extends Component {
       }
     };
 
-    const todoElement = (index, todo) => (
+    const todoElement = (index, todo, id) => (
       <div key={`${index}${todo}`} className="todos-list">
-        {editModeInput(index, todo)}
+        {editModeInput(index, todo, id)}
         <span className="todo-buttons">
-          {editModeButton(index, todo)}
+          {editModeButton(id, todo)}
           <button
             className="delete-button"
-            onClick={() => this.deleteTodo(Number(index))}
+            onClick={() => this.deleteTodo(Number(id))}
           >
             X
           </button>
@@ -153,8 +153,11 @@ export default class TodoList extends Component {
       </div>
     );
 
-    const todos = this.state.todos.map((todo, index) =>
-      todoElement(index, todo)
+    let todos = this.state.todos;
+    todos.sort((a, b) => a.id - b.id);
+
+    todos = todos.map((todo, index) =>
+      todoElement(index, todo.description, todo.id)
     );
     return (
       <div>
